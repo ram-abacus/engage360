@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
 import { Analytics } from "@vercel/analytics/next"
+import { GoogleTagManager, GoogleAnalytics } from '@next/third-parties/google'
 import "./globals.css"
 import { Suspense } from "react"
 
@@ -25,6 +26,8 @@ export default function RootLayout({
           {children}
           <Analytics />
         </Suspense>
+         <GoogleTagManager gtmId="GTM-MM5PWB94" />
+        <GoogleAnalytics gaId="G-M6HMK9JLLG" />
       </body>
     </html>
   )
