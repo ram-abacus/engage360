@@ -944,24 +944,24 @@ export default function Engage360Landing() {
       </footer>
 
       {showVideo && (
-        <div
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4"
-          onClick={() => setShowVideo(false)}
-        >
-          <div
-            className="w-full max-w-3xl aspect-video bg-black rounded-2xl overflow-hidden ring-1 ring-white/10"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <iframe
-              className="w-full h-full"
-              src="https://www.youtube.com/embed/Ke90Tje7VS0?autoplay=1&rel=0"
-              title="React Dashboard Demo"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            />
-          </div>
-        </div>
-      )}
+  <div
+    className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-4"
+    onClick={() => setShowVideo(false)}
+  >
+    <div
+      className="w-full max-w-3xl aspect-video bg-black rounded-2xl overflow-hidden ring-1 ring-white/10"
+      onClick={(e) => e.stopPropagation()}
+    >
+      <iframe
+        className="w-full h-full"
+        src="https://www.youtube.com/embed/QqsOdJGPRck?autoplay=1&rel=0&loop=1&playlist=QqsOdJGPRck"
+        title="React Dashboard Demo"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen
+      />
+    </div>
+  </div>
+)}
     </div>
   )
 }
