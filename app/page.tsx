@@ -1,5 +1,6 @@
 "use client"
 
+import BasiqForm from "@/components/ContactForm"
 import { useState } from "react"
 
 // Brand Tokens
@@ -210,239 +211,239 @@ const FaqItem = ({ q, a }) => {
   )
 }
 
-const LeadForm = () => (
-  <div className="mautic-form-container relative z-30">
-    <style jsx>{`
-      .mauticform_wrapper { max-width: 600px; margin: 10px auto; position: relative; z-index: 30; }
-      .mauticform-innerform { position: relative; z-index: 30; }
-      .mauticform-post-success {}
-      .mauticform-name { font-weight: bold; font-size: 1.5em; margin-bottom: 3px; }
-      .mauticform-description { margin-top: 2px; margin-bottom: 10px; }
-      .mauticform-error { margin-bottom: 10px; color: red; }
-      .mauticform-message { margin-bottom: 10px; color: green; }
-      .mauticform-row { display: block; margin-bottom: 20px; position: relative; z-index: 30; }
-      .mauticform-label { font-size: 1.1em; display: block; font-weight: bold; margin-bottom: 5px; }
-      .mauticform-row.mauticform-required .mauticform-label:after { color: #e32; content: " *"; display: inline; }
-      .mauticform-helpmessage { display: block; font-size: 0.9em; margin-bottom: 3px; }
-      .mauticform-errormsg { display: block; color: red; margin-top: 2px; }
-      .mauticform-selectbox, .mauticform-input, .mauticform-textarea { 
-        width: 100%; 
-        padding: 0.75rem; 
-        border: 1px solid #e2e8f0; 
-        background: #fff; 
-        border-radius: 0.75rem; 
-        box-sizing: border-box;
-        font-size: 0.875rem;
-        transition: all 0.2s ease;
-        position: relative;
-        z-index: 30;
-        pointer-events: auto;
-      }
-      .mauticform-input:focus, .mauticform-textarea:focus {
-        outline: none;
-        border-color: #004bab;
-        box-shadow: 0 0 0 2px rgba(0, 75, 171, 0.1);
-        z-index: 31;
-      }
-      .mauticform-checkboxgrp-row {}
-      .mauticform-checkboxgrp-label { font-weight: normal; }
-      .mauticform-checkboxgrp-checkbox {}
-      .mauticform-radiogrp-row {}
-      .mauticform-radiogrp-label { font-weight: normal; }
-      .mauticform-radiogrp-radio {}
-      .mauticform-button-wrapper .mauticform-button.btn-ghost, .mauticform-pagebreak-wrapper .mauticform-pagebreak.btn-ghost { 
-        color: #ffffff;
-        background-color: #004bab;
-        border-color: #004bab;
-        width: 100%;
-        padding: 0.75rem;
-        border-radius: 0.75rem;
-        font-weight: 600;
-        font-size: 0.875rem;
-        transition: all 0.2s ease;
-        position: relative;
-        z-index: 30;
-        pointer-events: auto;
-        cursor: pointer;
-      }
-      .mauticform-button-wrapper .mauticform-button, .mauticform-pagebreak-wrapper .mauticform-pagebreak { 
-        display: inline-block;
-        margin-bottom: 0;
-        font-weight: 600;
-        text-align: center;
-        vertical-align: middle;
-        cursor: pointer;
-        background-image: none;
-        border: 1px solid transparent;
-        white-space: nowrap;
-        padding: 0.75rem;
-        font-size: 0.875rem;
-        line-height: 1.3856;
-        border-radius: 0.75rem;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        width: 100%;
-        position: relative;
-        z-index: 30;
-        pointer-events: auto;
-      }
-      .mauticform-button-wrapper .mauticform-button.btn-ghost:hover {
-        background-color: #003d8f;
-        border-color: #003d8f;
-      }
-      .mauticform-button-wrapper .mauticform-button.btn-ghost[disabled], .mauticform-pagebreak-wrapper .mauticform-pagebreak.btn-ghost[disabled] { 
-        background-color: #6b7280; 
-        border-color: #6b7280; 
-        opacity: 0.75; 
-        cursor: not-allowed; 
-      }
-      .mauticform-pagebreak-wrapper .mauticform-button-wrapper { display: inline; }
-      .mauticform-field-hidden { display: none; }
+// const LeadForm = () => (
+//   <div className="mautic-form-container relative z-30">
+//     <style jsx>{`
+//       .mauticform_wrapper { max-width: 600px; margin: 10px auto; position: relative; z-index: 30; }
+//       .mauticform-innerform { position: relative; z-index: 30; }
+//       .mauticform-post-success {}
+//       .mauticform-name { font-weight: bold; font-size: 1.5em; margin-bottom: 3px; }
+//       .mauticform-description { margin-top: 2px; margin-bottom: 10px; }
+//       .mauticform-error { margin-bottom: 10px; color: red; }
+//       .mauticform-message { margin-bottom: 10px; color: green; }
+//       .mauticform-row { display: block; margin-bottom: 20px; position: relative; z-index: 30; }
+//       .mauticform-label { font-size: 1.1em; display: block; font-weight: bold; margin-bottom: 5px; }
+//       .mauticform-row.mauticform-required .mauticform-label:after { color: #e32; content: " *"; display: inline; }
+//       .mauticform-helpmessage { display: block; font-size: 0.9em; margin-bottom: 3px; }
+//       .mauticform-errormsg { display: block; color: red; margin-top: 2px; }
+//       .mauticform-selectbox, .mauticform-input, .mauticform-textarea { 
+//         width: 100%; 
+//         padding: 0.75rem; 
+//         border: 1px solid #e2e8f0; 
+//         background: #fff; 
+//         border-radius: 0.75rem; 
+//         box-sizing: border-box;
+//         font-size: 0.875rem;
+//         transition: all 0.2s ease;
+//         position: relative;
+//         z-index: 30;
+//         pointer-events: auto;
+//       }
+//       .mauticform-input:focus, .mauticform-textarea:focus {
+//         outline: none;
+//         border-color: #004bab;
+//         box-shadow: 0 0 0 2px rgba(0, 75, 171, 0.1);
+//         z-index: 31;
+//       }
+//       .mauticform-checkboxgrp-row {}
+//       .mauticform-checkboxgrp-label { font-weight: normal; }
+//       .mauticform-checkboxgrp-checkbox {}
+//       .mauticform-radiogrp-row {}
+//       .mauticform-radiogrp-label { font-weight: normal; }
+//       .mauticform-radiogrp-radio {}
+//       .mauticform-button-wrapper .mauticform-button.btn-ghost, .mauticform-pagebreak-wrapper .mauticform-pagebreak.btn-ghost { 
+//         color: #ffffff;
+//         background-color: #004bab;
+//         border-color: #004bab;
+//         width: 100%;
+//         padding: 0.75rem;
+//         border-radius: 0.75rem;
+//         font-weight: 600;
+//         font-size: 0.875rem;
+//         transition: all 0.2s ease;
+//         position: relative;
+//         z-index: 30;
+//         pointer-events: auto;
+//         cursor: pointer;
+//       }
+//       .mauticform-button-wrapper .mauticform-button, .mauticform-pagebreak-wrapper .mauticform-pagebreak { 
+//         display: inline-block;
+//         margin-bottom: 0;
+//         font-weight: 600;
+//         text-align: center;
+//         vertical-align: middle;
+//         cursor: pointer;
+//         background-image: none;
+//         border: 1px solid transparent;
+//         white-space: nowrap;
+//         padding: 0.75rem;
+//         font-size: 0.875rem;
+//         line-height: 1.3856;
+//         border-radius: 0.75rem;
+//         -webkit-user-select: none;
+//         -moz-user-select: none;
+//         -ms-user-select: none;
+//         user-select: none;
+//         width: 100%;
+//         position: relative;
+//         z-index: 30;
+//         pointer-events: auto;
+//       }
+//       .mauticform-button-wrapper .mauticform-button.btn-ghost:hover {
+//         background-color: #003d8f;
+//         border-color: #003d8f;
+//       }
+//       .mauticform-button-wrapper .mauticform-button.btn-ghost[disabled], .mauticform-pagebreak-wrapper .mauticform-pagebreak.btn-ghost[disabled] { 
+//         background-color: #6b7280; 
+//         border-color: #6b7280; 
+//         opacity: 0.75; 
+//         cursor: not-allowed; 
+//       }
+//       .mauticform-pagebreak-wrapper .mauticform-button-wrapper { display: inline; }
+//       .mauticform-field-hidden { display: none; }
       
-      .mautic-form-grid {
-        display: grid;
-        grid-template-columns: repeat(1, 1fr);
-        gap: 0.75rem;
-        position: relative;
-        z-index: 30;
-      }
-      .mautic-form-full-width {
-        grid-column: 1 / -1;
-      }
+//       .mautic-form-grid {
+//         display: grid;
+//         grid-template-columns: repeat(1, 1fr);
+//         gap: 0.75rem;
+//         position: relative;
+//         z-index: 30;
+//       }
+//       .mautic-form-full-width {
+//         grid-column: 1 / -1;
+//       }
       
-      @media (max-width: 640px) {
-        .mautic-form-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-    `}</style>
+//       @media (max-width: 640px) {
+//         .mautic-form-grid {
+//           grid-template-columns: 1fr;
+//         }
+//       }
+//     `}</style>
 
-    <div id="mauticform_wrapper_quickrewardsbasiq360" className="mauticform_wrapper">
-      <form
-        autoComplete="false"
-        role="form"
-        method="post"
-        action="https://mautic.abacusdesk.co.in/form/submit?formId=13"
-        id="mauticform_quickrewardsbasiq360"
-        data-mautic-form="quickrewardsbasiq360"
-        encType="multipart/form-data"
-      >
-        <div className="mauticform-error" id="mauticform_quickrewardsbasiq360_error"></div>
-        <div className="mauticform-message" id="mauticform_quickrewardsbasiq360_message"></div>
+//     <div id="mauticform_wrapper_quickrewardsbasiq360" className="mauticform_wrapper">
+//       <form
+//         autoComplete="false"
+//         role="form"
+//         method="post"
+//         action="https://mautic.abacusdesk.co.in/form/submit?formId=13"
+//         id="mauticform_quickrewardsbasiq360"
+//         data-mautic-form="quickrewardsbasiq360"
+//         encType="multipart/form-data"
+//       >
+//         <div className="mauticform-error" id="mauticform_quickrewardsbasiq360_error"></div>
+//         <div className="mauticform-message" id="mauticform_quickrewardsbasiq360_message"></div>
 
-        <div className="mauticform-innerform">
-          <div className="mauticform-page-wrapper mauticform-page-1" data-mautic-form-page="1">
-            <div className="mautic-form-grid">
-              <div
-                id="mauticform_quickrewardsbasiq360_f_name"
-                className="mauticform-row mauticform-text mauticform-field-1 mauticform-required"
-                data-validate="f_name"
-                data-validation-type="text"
-              >
-                <input
-                  type="text"
-                  name="mauticform[f_name]"
-                  defaultValue=""
-                  id="mauticform_input_quickrewardsbasiq360_f_name"
-                  placeholder="Full Name*"
-                  className="mauticform-input"
-                  required
-                />
-                <span className="mauticform-errormsg" style={{ display: "none" }}>
-                  This field is required
-                </span>
-              </div>
+//         <div className="mauticform-innerform">
+//           <div className="mauticform-page-wrapper mauticform-page-1" data-mautic-form-page="1">
+//             <div className="mautic-form-grid">
+//               <div
+//                 id="mauticform_quickrewardsbasiq360_f_name"
+//                 className="mauticform-row mauticform-text mauticform-field-1 mauticform-required"
+//                 data-validate="f_name"
+//                 data-validation-type="text"
+//               >
+//                 <input
+//                   type="text"
+//                   name="mauticform[f_name]"
+//                   defaultValue=""
+//                   id="mauticform_input_quickrewardsbasiq360_f_name"
+//                   placeholder="Full Name*"
+//                   className="mauticform-input"
+//                   required
+//                 />
+//                 <span className="mauticform-errormsg" style={{ display: "none" }}>
+//                   This field is required
+//                 </span>
+//               </div>
 
-              <div
-                id="mauticform_quickrewardsbasiq360_email"
-                className="mauticform-row mauticform-email mauticform-field-2 mauticform-required"
-                data-validate="email"
-                data-validation-type="email"
-              >
-                <input
-                  type="email"
-                  name="mauticform[email]"
-                  defaultValue=""
-                  id="mauticform_input_quickrewardsbasiq360_email"
-                  placeholder="Work Email*"
-                  className="mauticform-input"
-                  required
-                />
-                <span className="mauticform-errormsg" style={{ display: "none" }}>
-                  This field is required
-                </span>
-              </div>
+//               <div
+//                 id="mauticform_quickrewardsbasiq360_email"
+//                 className="mauticform-row mauticform-email mauticform-field-2 mauticform-required"
+//                 data-validate="email"
+//                 data-validation-type="email"
+//               >
+//                 <input
+//                   type="email"
+//                   name="mauticform[email]"
+//                   defaultValue=""
+//                   id="mauticform_input_quickrewardsbasiq360_email"
+//                   placeholder="Work Email*"
+//                   className="mauticform-input"
+//                   required
+//                 />
+//                 <span className="mauticform-errormsg" style={{ display: "none" }}>
+//                   This field is required
+//                 </span>
+//               </div>
 
-              <div
-                id="mauticform_quickrewardsbasiq360_phone"
-                className="mauticform-row mauticform-tel mauticform-field-3 mauticform-required"
-                data-validate="phone"
-                data-validation-type="tel"
-              >
-                <input
-                  type="tel"
-                  name="mauticform[phone]"
-                  defaultValue=""
-                  id="mauticform_input_quickrewardsbasiq360_phone"
-                  placeholder="Phone*"
-                  className="mauticform-input"
-                  required
-                />
-                <span className="mauticform-errormsg" style={{ display: "none" }}></span>
-              </div>
+//               <div
+//                 id="mauticform_quickrewardsbasiq360_phone"
+//                 className="mauticform-row mauticform-tel mauticform-field-3 mauticform-required"
+//                 data-validate="phone"
+//                 data-validation-type="tel"
+//               >
+//                 <input
+//                   type="tel"
+//                   name="mauticform[phone]"
+//                   defaultValue=""
+//                   id="mauticform_input_quickrewardsbasiq360_phone"
+//                   placeholder="Phone*"
+//                   className="mauticform-input"
+//                   required
+//                 />
+//                 <span className="mauticform-errormsg" style={{ display: "none" }}></span>
+//               </div>
 
-              <div
-                id="mauticform_quickrewardsbasiq360_company"
-                className="mauticform-row mauticform-text mauticform-field-4"
-              >
-                <input
-                  type="text"
-                  name="mauticform[company]"
-                  defaultValue=""
-                  id="mauticform_input_quickrewardsbasiq360_company"
-                  placeholder="Company"
-                  className="mauticform-input"
-                />
-                <span className="mauticform-errormsg" style={{ display: "none" }}></span>
-              </div>
+//               <div
+//                 id="mauticform_quickrewardsbasiq360_company"
+//                 className="mauticform-row mauticform-text mauticform-field-4"
+//               >
+//                 <input
+//                   type="text"
+//                   name="mauticform[company]"
+//                   defaultValue=""
+//                   id="mauticform_input_quickrewardsbasiq360_company"
+//                   placeholder="Company"
+//                   className="mauticform-input"
+//                 />
+//                 <span className="mauticform-errormsg" style={{ display: "none" }}></span>
+//               </div>
 
-              <div
-                id="mauticform_quickrewardsbasiq360_submit"
-                className="mauticform-row mauticform-button-wrapper mauticform-field-6 mautic-form-full-width"
-              >
-                <button
-                  className="btn btn-ghost mauticform-button"
-                  name="mauticform[submit]"
-                  value="1"
-                  id="mauticform_input_quickrewardsbasiq360_submit"
-                  type="submit"
-                >
-                  Get a Live Demo
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+//               <div
+//                 id="mauticform_quickrewardsbasiq360_submit"
+//                 className="mauticform-row mauticform-button-wrapper mauticform-field-6 mautic-form-full-width"
+//               >
+//                 <button
+//                   className="btn btn-ghost mauticform-button"
+//                   name="mauticform[submit]"
+//                   value="1"
+//                   id="mauticform_input_quickrewardsbasiq360_submit"
+//                   type="submit"
+//                 >
+//                   Get a Live Demo
+//                 </button>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
 
-        <input type="hidden" name="mauticform[formId]" id="mauticform_quickrewardsbasiq360_id" value="13" />
-        <input type="hidden" name="mauticform[return]" id="mauticform_quickrewardsbasiq360_return" value="" />
-        <input
-          type="hidden"
-          name="mauticform[formName]"
-          id="mauticform_quickrewardsbasiq360_name"
-          value="quickrewardsbasiq360"
-        />
-      </form>
-    </div>
+//         <input type="hidden" name="mauticform[formId]" id="mauticform_quickrewardsbasiq360_id" value="13" />
+//         <input type="hidden" name="mauticform[return]" id="mauticform_quickrewardsbasiq360_return" value="" />
+//         <input
+//           type="hidden"
+//           name="mauticform[formName]"
+//           id="mauticform_quickrewardsbasiq360_name"
+//           value="quickrewardsbasiq360"
+//         />
+//       </form>
+//     </div>
 
-    <p className="text-xs text-slate-500 mt-3">
-      By submitting, you agree to be contacted about Engage360. Your data is protected and used only for demo
-      coordination.
-    </p>
-  </div>
-)
+//     <p className="text-xs text-slate-500 mt-3">
+//       By submitting, you agree to be contacted about Engage360. Your data is protected and used only for demo
+//       coordination.
+//     </p>
+//   </div>
+// )
 
 export default function Engage360Landing() {
   const [showVideo, setShowVideo] = useState(false)
@@ -530,11 +531,12 @@ export default function Engage360Landing() {
               <Stat value="0" label="App downloads required" />
             </div>
           </div>
-          <div className="relative z-20 bg-white rounded-2xl p-6 shadow-xl ring-1 ring-slate-200">
-            <h3 id="demo" className="text-xl font-semibold mb-4">
+          <div className="relative z-20 bg-white rounded-2xl shadow-xl ring-1 ring-slate-200">
+            {/* <h3 id="demo" className="text-xl font-semibold mb-4">
               See Engage360 in Action
-            </h3>
-            <LeadForm />
+            </h3> */}
+            <BasiqForm/>
+            {/* <LeadForm /> */}
           </div>
         </div>
       </section>
@@ -623,7 +625,18 @@ export default function Engage360Landing() {
           <div className="grid lg:grid-cols-2 gap-8 items-stretch">
             <div className="relative rounded-2xl overflow-hidden ring-1 ring-slate-200 shadow-sm bg-white">
               <div className="aspect-video bg-slate-100">
-                <button
+
+<video 
+    className="img-fluid w-full h-auto"
+    autoPlay 
+    loop 
+    muted 
+    playsInline
+  >
+    <source src="Engage 360.mp4" type="video/mp4" />
+  </video>
+
+                {/* <button
                   onClick={() => setShowVideo(true)}
                   className="group relative w-full h-full flex items-center justify-center"
                 >
@@ -639,19 +652,19 @@ export default function Engage360Landing() {
                   >
                     <MonitorPlayIcon className="w-5 h-5" /> Watch Product Demo
                   </span>
-                </button>
+                </button> */}
               </div>
-              <div className="p-4 flex items-center justify-between text-sm text-slate-600">
+              {/* <div className="p-4 flex items-center justify-between text-sm text-slate-600">
                 <div className="flex items-center gap-2">
                   <StarIcon className="w-4 h-4" style={{ color: BRAND_ORANGE }} /> Real case walkthrough
                 </div>
                 <div className="flex items-center gap-2">
                   <TrendingUpIcon className="w-4 h-4" style={{ color: BRAND_BLUE }} /> ROI in weeks
                 </div>
-              </div>
+              </div> */}
             </div>
 
-            <div className="rounded-2xl p-6 md:p-8 ring-1 ring-slate-200 bg-white shadow-sm flex flex-col">
+            <div className="videoSide rounded-2xl p-6 md:p-8 ring-1 ring-slate-200 bg-white shadow-sm flex flex-col">
               <div className="flex items-center gap-3 mb-3">
                 <img
                   src="https://dummyimage.com/64x64/004bab/ffffff&text=HI"
@@ -690,7 +703,7 @@ export default function Engage360Landing() {
             </div>
           </div>
 
-          <div className="mt-8 grid md:grid-cols-3 gap-6">
+          {/* <div className="mt-8 grid md:grid-cols-3 gap-6">
             {[1, 2, 3].map((i) => (
               <div key={i} className="rounded-2xl p-5 ring-1 ring-slate-200 bg-white shadow-sm">
                 <div className="flex items-center gap-3 mb-3">
@@ -710,7 +723,7 @@ export default function Engage360Landing() {
                 </div>
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
       </section>
 
