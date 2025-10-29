@@ -1,6 +1,7 @@
 "use client"
 
 import BasiqForm from "@/components/ContactForm"
+import CookieConsent from "@/components/CookiesConcent"
 import { useState } from "react"
 
 // Brand Tokens
@@ -975,6 +976,9 @@ export default function Engage360Landing() {
     </div>
   </div>
 )}
+
+<CookieConsent />
     </div>
+    
   )
 }
