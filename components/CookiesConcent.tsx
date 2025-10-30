@@ -1,22 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, Zap } from 'lucide-react';
 
 export default function CookieConsent() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [preferences, setPreferences] = useState({
     analytics: false,
     marketing: false,
   });
 
+  // Check if user has already made a choice
+  useEffect(() => {
+    const saved = localStorage.getItem('cookiePreferences');
+    if (!saved) {
+      setIsOpen(true);
+    } else {
+      setPreferences(JSON.parse(saved));
+    }
+  }, []);
+
+  // Save preferences when they change
+  useEffect(() => {
+    if (preferences.analytics || preferences.marketing) {
+      localStorage.setItem('cookiePreferences', JSON.stringify(preferences));
+    }
+  }, [preferences]);
+
   if (!isOpen) return null;
 
   const handleAcceptAll = () => {
-    setPreferences({ analytics: true, marketing: true });
+    const newPrefs = { analytics: true, marketing: true };
+    setPreferences(newPrefs);
+    localStorage.setItem('cookiePreferences', JSON.stringify(newPrefs));
     setIsOpen(false);
   };
 
   const handleRejectAll = () => {
-    setPreferences({ analytics: false, marketing: false });
+    const newPrefs = { analytics: false, marketing: false };
+    setPreferences(newPrefs);
+    localStorage.setItem('cookiePreferences', JSON.stringify(newPrefs));
     setIsOpen(false);
   };
 
@@ -33,11 +54,6 @@ export default function CookieConsent() {
             <Zap size={22} style={{ color: '#FFA500' }} className="flex-shrink-0" />
             <div className="flex-1">
               <p className="text-white text-sm font-semibold">We use cookies to personalize your engagement experience.</p>
-              {/* <p className="text-blue-100 text-xs">
-                <a href="#" className="underline hover:text-white">Privacy Policy</a>
-                {' • '}
-                <a href="#" className="underline hover:text-white">Cookie Policy</a>
-              </p> */}
             </div>
           </div>
 
@@ -45,21 +61,36 @@ export default function CookieConsent() {
           <div className="flex items-center gap-2 flex-shrink-0">
             <button
               onClick={handleRejectAll}
-              className="px-4 py-2 text-xs font-semibold text-white border-2 border-white rounded-lg hover:bg-white hover:text-blue-600 transition-all"
-              style={{ borderColor: '#FFA500' }}
+              className="px-4 py-2 text-xs font-semibold rounded-lg transition-all"
+              style={{ 
+                backgroundColor: 'transparent',
+                color: '#FFA500',
+                border: '2px solid #FFA500'
+              }}
+              onMouseEnter={(e) => {
+                (e.target as HTMLButtonElement).style.backgroundColor = '#FFA500';
+                (e.target as HTMLButtonElement).style.color = '#004bab';
+              }}
+              onMouseLeave={(e) => {
+                (e.target as HTMLButtonElement).style.backgroundColor = 'transparent';
+                (e.target as HTMLButtonElement).style.color = '#FFA500';
+              }}
             >
               Decline
             </button>
             <button
               onClick={handleAcceptAll}
-              className="px-4 py-2 text-xs font-semibold text-white rounded-lg hover:opacity-90 transition-all"
+              className="px-4 py-2 text-xs font-semibold text-blue-600 rounded-lg hover:opacity-90 transition-all"
               style={{ backgroundColor: '#FFA500' }}
             >
               Accept
             </button>
             <button
               onClick={() => setIsOpen(false)}
-              className="p-2 text-white hover:text-orange-300 transition-colors"
+              className="p-2 transition-colors"
+              style={{ color: '#FFA500' }}
+              onMouseEnter={(e) => (e.target as HTMLButtonElement).style.color = '#FFB84D'}
+              onMouseLeave={(e) => (e.target as HTMLButtonElement).style.color = '#FFA500'}
             >
               <X size={18} />
             </button>
